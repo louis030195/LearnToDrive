@@ -11,7 +11,7 @@ The aim is to learn the car to drive without hitting walls
 
 ## Preview of 15 hour trained agent
 
-https://www.youtube.com/watch?v=Ix7AlDgpLHs
+https://youtu.be/gEEcpYuBuBc
 
 
 
