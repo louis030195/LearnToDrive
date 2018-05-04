@@ -11,6 +11,7 @@ public class DriveAgent : Agent {
     public WallDetect wallDetect;
 
     float previousDistance = float.MaxValue;
+    Vector3 previousPosition = Vector3.zero;
 
     public Transform Target;
     public float speed = 10;
@@ -76,17 +77,25 @@ public class DriveAgent : Agent {
             Done();
             AddReward(1.0f);
         }
-
+        
         // Getting closer
         if (distanceToTarget < previousDistance)
         {
             AddReward(0.01f);
         }
 
+        if(Vector3.Distance(transform.position,previousPosition) > 0.1f)
+        {
+            AddReward(0.1f * Vector3.Distance(transform.position, previousPosition));
+        }
+
+        //Debug.Log($"Distance : {Vector3.Distance(transform.position, previousPosition)}");  
+
         // Time penalty
         AddReward(-0.005f);
 
         previousDistance = distanceToTarget;
+        previousPosition = transform.position;
 
         // Actions, size = 2
         Vector3 controlSignal = Vector3.zero;
