@@ -9,9 +9,8 @@ The aim is to learn the car to drive without hitting walls
 
 ![Alt text](Screenshots/tensorflowboard.png?raw=true "Tensorboard")
 
-## Preview of 15 hour trained agent
+## Preview of 15 mins trained agent
 
-https://youtu.be/gEEcpYuBuBc
-
+https://www.youtube.com/watch?v=gEEcpYuBuBc
 
 
