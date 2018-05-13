@@ -5,7 +5,7 @@ The aim is to make the car learn to drive without hitting walls
 
 ![Alt text](Screenshots/game.png?raw=true "Game screenshot 1")
 
-## Tensorflow board
+## Tensorflow board - v0.1
 
 ![Alt text](Screenshots/tensorflowboard.png?raw=true "Tensorboard")
 
