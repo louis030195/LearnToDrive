@@ -1,7 +1,7 @@
 # LearnToDrive
 
 Machine learning game using Unity ML agents (tensorflow).
-The aim is to learn the car to drive without hitting walls
+The aim is to make the car learn to drive without hitting walls
 
 ![Alt text](Screenshots/game.png?raw=true "Game screenshot 1")
 
@@ -11,6 +11,6 @@ The aim is to learn the car to drive without hitting walls
 
 ## Preview of 15 min trained agent
 
-https://www.youtube.com/watch?v=gEEcpYuBuBc
+[Video](https://www.youtube.com/watch?v=gEEcpYuBuBc)
 
 
