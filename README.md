@@ -13,4 +13,9 @@ The aim is to make the car learn to drive without hitting walls
 
 [Video](https://www.youtube.com/watch?v=gEEcpYuBuBc)
 
+## Preview of trained agent - v0.5 – 100 000 steps
+
+[Video](https://www.youtube.com/watch?v=b91gtS0qliU)
+
+
 

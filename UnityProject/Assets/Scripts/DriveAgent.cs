@@ -112,13 +112,23 @@ public class DriveAgent : Agent {
         // Actions, size = 2
         Vector3 controlSignal = Vector3.zero;
         controlSignal.x = Mathf.Clamp(vectorAction[0], -1, 1);
-        controlSignal.z = Mathf.Clamp(vectorAction[1], -1, 1);
-        rBody.AddForce(controlSignal * speed);
+        //controlSignal.z = Mathf.Clamp(vectorAction[1], -1, 1);
+        //rBody.AddForce(controlSignal * speed);
+
+        transform.Rotate(new Vector3(0, Mathf.Clamp(vectorAction[1], -1, 1), 0));
+        
+        Vector3 velocity = Vector3.zero;
+        velocity.z = Mathf.Clamp(vectorAction[0], -1, 1);
+        // move the object
+        transform.Translate(velocity * speed);
+        
     }
 
     public override void AgentReset()
     {
-        this.transform.position = Vector3.zero;
+        transform.position = Vector3.zero;
+        //transform.rotation = new Quaternion(0, 10, 0, 0);
+        transform.eulerAngles = new Vector3(0, 90, 0);
         rBody.angularVelocity = Vector3.zero;
         rBody.velocity = Vector3.zero;
     }
