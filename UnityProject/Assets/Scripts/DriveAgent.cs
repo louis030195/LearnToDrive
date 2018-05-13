@@ -89,7 +89,7 @@ public class DriveAgent : Agent {
         {
             //AddReward(0.1f * Vector3.Distance(transform.position, previousPosition));
             // Debug.Log($"Distance from previousPosition reward : { 0.1f * Vector3.Distance(transform.position, previousPosition) }");
-            AddReward(0.1f);
+            AddReward(0.5f); 
         }
 
         // Positive reward if getting closer to the target
@@ -97,7 +97,7 @@ public class DriveAgent : Agent {
         {
             //AddReward(0.01f * Vector3.Distance(transform.position, Target.position));
             // Debug.Log($"Distance from target reward : { 0.01f * Vector3.Distance(transform.position, Target.position) }");
-            AddReward(0.1f);
+            AddReward(0.1f); // 0.1f = v0.3 |`0.15f = v0.4 
         }
 
         
