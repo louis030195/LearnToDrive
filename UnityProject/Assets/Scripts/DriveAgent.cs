@@ -59,8 +59,8 @@ public class DriveAgent : Agent {
 
 
         // Agent velocity
-        AddVectorObs(rBody.velocity.x);
-        AddVectorObs(rBody.velocity.z);
+        // AddVectorObs(rBody.velocity.x);
+        // AddVectorObs(rBody.velocity.z);
     }
 
 
@@ -87,11 +87,18 @@ public class DriveAgent : Agent {
         // Positive reward if getting away from previousPosition
         if (Vector3.Distance(transform.position,previousPosition) > 0.1f)
         {
-            //AddReward(0.1f * Vector3.Distance(transform.position, previousPosition));
+            AddReward(0.1f * Mathf.Clamp(Vector3.Distance(transform.position, previousPosition),1,10));
             // Debug.Log($"Distance from previousPosition reward : { 0.1f * Vector3.Distance(transform.position, previousPosition) }");
-            AddReward(0.5f); 
+            //AddReward(0.7f); 
         }
+        /*
+        // Positive reward if getting away from 0,0,0
+        if (Vector3.Distance(Vector3.zero, transform.position) > 0.1f)
+        {
+            AddReward(0.01f);
+        }*/
 
+        /*
         // Positive reward if getting closer to the target
         if (Vector3.Distance(transform.position, Target.position) > 0.1f)
         {
@@ -99,9 +106,9 @@ public class DriveAgent : Agent {
             // Debug.Log($"Distance from target reward : { 0.01f * Vector3.Distance(transform.position, Target.position) }");
             AddReward(0.1f); // 0.1f = v0.3 |`0.15f = v0.4 
         }
+        */
 
-        
-        
+
 
         // Time penalty
         AddReward(-0.005f);
