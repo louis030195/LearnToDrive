@@ -6,11 +6,13 @@ public class DriveAgent : Agent {
 
     Rigidbody rBody;
     RayPerception rayPer;
+    bool bFirstMove = false;
 
     [HideInInspector]
     public WallDetect wallDetect;
 
-    float previousDistance = float.MaxValue;
+    float previousDistanceTarget = float.MaxValue;
+    float previousDistanceSpawn = float.MinValue;
     Vector3 previousPosition = Vector3.zero;
 
     public Transform Target;
@@ -67,9 +69,14 @@ public class DriveAgent : Agent {
 
     public override void AgentAction(float[] vectorAction, string textAction)
 	{
+
+
+
+
         // Rewards
         float distanceToTarget = Vector3.Distance(this.transform.position,
                                                   Target.position);
+        float distanceFromSpawn = Vector3.Distance(Vector3.zero, transform.position);
 
         // Reached target
         if (distanceToTarget < 1.42f)
@@ -79,24 +86,39 @@ public class DriveAgent : Agent {
         }
         
         // Getting closer
+        /*
         if (distanceToTarget < previousDistance)
         {
-            AddReward(0.01f);
-        }
+            AddReward(0.005f);
+        }*/
 
         // Positive reward if getting away from previousPosition
-        if (Vector3.Distance(transform.position,previousPosition) > 0.1f)
-        {
-            AddReward(0.1f * Mathf.Clamp(Vector3.Distance(transform.position, previousPosition),1,10));
+        //if (Vector3.Distance(transform.position,previousPosition) > 0.1f)
+        //{
+        //if(transform.position.x > 0) // If we go away from spawn
+        //AddReward(Mathf.Clamp(Vector3.Distance(transform.position, previousPosition), 0.01f, 0.015f));
             // Debug.Log($"Distance from previousPosition reward : { 0.1f * Vector3.Distance(transform.position, previousPosition) }");
-            //AddReward(0.7f); 
-        }
+            //AddReward(0.015f); 
+        //}
+
         /*
+        if (Vector3.Distance(transform.position, Vector3.zero) < 2 && !bFirstMove) // Used to start moving the agent or he may be stuck at beggining
+        {
+            transform.Rotate(new Vector3(0, 90, 0));
+            Vector3 firstMove = Vector3.zero;
+            firstMove.z = 5;
+            // move the object
+            transform.Translate(firstMove * speed);
+
+            bFirstMove = true;
+        } 
+        */
+        
         // Positive reward if getting away from 0,0,0
-        if (Vector3.Distance(Vector3.zero, transform.position) > 0.1f)
+        if (distanceFromSpawn > previousDistanceSpawn)
         {
             AddReward(0.01f);
-        }*/
+        }
 
         /*
         // Positive reward if getting closer to the target
@@ -113,7 +135,8 @@ public class DriveAgent : Agent {
         // Time penalty
         AddReward(-0.005f);
 
-        previousDistance = distanceToTarget;
+        previousDistanceTarget = distanceToTarget;
+        previousDistanceSpawn = distanceFromSpawn;
         previousPosition = transform.position;
 
         // Actions, size = 2

@@ -6,7 +6,9 @@ The aim is to make the car learn to drive without hitting walls
 ## Inputs variable
 x value of relative position between point to reach and agent<br/>
 z value of relative position between point to reach and agent<br/>
+
 Check if hitting something at angles (2 origins) : 0, 45, 90, 135, 180, 110, 70
+![Alt text](Screenshots/inputraycast.png?raw=true "Ray cast")
 
 ## Output variable
 value to move on x axis<br/>
@@ -25,6 +27,10 @@ rotation
 ## Preview of trained agent - v0.5 – 100 000 steps
 
 [Video](https://www.youtube.com/watch?v=b91gtS0qliU)
+
+## Preview of trained agent - v0.6 ~ 100 000 steps
+
+[Video](https://www.youtube.com/watch?v=6817Ynku2Xg)
 
 
 
