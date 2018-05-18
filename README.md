@@ -34,5 +34,9 @@ rotation
 
 [Version 0.6](https://www.youtube.com/watch?v=6817Ynku2Xg)
 
+## Preview of trained agent - v0.9 - 678 000 steps - Handling speed now (not very well)
+
+[Version 0.9](https://www.youtube.com/watch?v=U_c8JuvTiho)
+
 
 

@@ -13,18 +13,14 @@ public class DriveAgent : Agent {
     float previousDistanceSpawn = float.MinValue;
     float previousDistancePosition = float.MinValue;
     Vector3 previousPosition = Vector3.zero;
+    //Rigidbody rigidbody;
 
     public Transform Target;
-    public float speed = 10;
+    public float speed;
 
-    private void Awake()
+    private void Start()
     {
-
-    }
-
-    void Start()
-    {
-
+        //rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -44,11 +40,16 @@ public class DriveAgent : Agent {
     public override void CollectObservations()
     {
         // Calculate relative position
-        // Vector3 relativePosition = Target.position - this.transform.position;
+        Vector3 relativePosition = Target.position - this.transform.position;
+        Vector3 relDistanceTravelled = transform.position - previousPosition;
 
         // Relative position
-        // AddVectorObs(relativePosition.x);
-        // AddVectorObs(relativePosition.z);
+        AddVectorObs(relativePosition.x);
+        AddVectorObs(relativePosition.z);
+
+        // Relative position
+        //AddVectorObs(relDistanceTravelled.x);
+        //AddVectorObs(relDistanceTravelled.z);
 
         //Detect wall
         float rayDistance = 12f;
@@ -58,9 +59,10 @@ public class DriveAgent : Agent {
         AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 0f, 0f));
         AddVectorObs(rayPer.Perceive(rayDistance, rayAngles, detectableObjects, 1.5f, 0f));
 
-        AddVectorObs(transform.rotation);
-        AddVectorObs(transform.position);
+        AddVectorObs(speed);
 
+        //AddVectorObs(rigidbody.velocity.x);
+        //AddVectorObs(rigidbody.velocity.z);
     }
 
 
@@ -107,7 +109,11 @@ public class DriveAgent : Agent {
         }*/
 
 
-
+        if(transform.position.y < -1) // Sometimes car go through walls and fall, need to reset
+        {
+            AddReward(-1f);
+            Done();
+        }
 
 
         // Time penalty
@@ -118,16 +124,20 @@ public class DriveAgent : Agent {
         previousPosition = transform.position;
 
         // Actions, size = 2
-        Vector3 controlSignal = Vector3.zero;
-        controlSignal.x = Mathf.Clamp(vectorAction[0], -1, 1);
+        // Vector3 controlSignal = Vector3.zero;
+        // controlSignal.x = Mathf.Clamp(vectorAction[0], -1, 1);
 
 
         transform.Rotate(new Vector3(0, Mathf.Clamp(vectorAction[1], -1, 1), 0));
         
         Vector3 velocity = Vector3.zero;
-        velocity.z = Mathf.Clamp(vectorAction[0], -1, 1);
+        //velocity.z = Mathf.Clamp(vectorAction[0], -1, 1);
+        velocity.z = 1;
+        speed = Mathf.Clamp(vectorAction[0], 0.1f, 0.6f);
+        //Debug.Log($"vectoraction {vectorAction[0]}");
         // move the object
         transform.Translate(velocity * speed);
+        //rigidbody.AddForce(A transform.forward * transform.rotation * vectorAction[0] * speed);
         
     }
 
@@ -135,6 +145,8 @@ public class DriveAgent : Agent {
     {
         transform.position = Vector3.zero;
         transform.eulerAngles = new Vector3(0, 90, 0);
+        //rigidbody.velocity = Vector3.zero;
+        //rigidbody.angularVelocity = Vector3.zero;
     }
 
     public override void AgentOnDone()
