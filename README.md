@@ -3,6 +3,9 @@
 Machine learning game using Unity ML agents (tensorflow).
 The aim is to make the car learn to drive without hitting walls
 
+It's a sort of self driving car simulator, only using "sensors" for driving,
+real car use also computer vision with cameras (see improvement ideas)
+
 ## Inputs variable
 x value of relative position between point to reach and agent<br/>
 z value of relative position between point to reach and agent<br/>
@@ -26,11 +29,11 @@ rotation
 
 [Version 0.1](https://www.youtube.com/watch?v=gEEcpYuBuBc)
 
-## Preview of trained agent - v0.5 – 100 000 steps
+## Preview of trained agent - v0.5 â€“ 100Â 000 steps
 
 [Version 0.5](https://www.youtube.com/watch?v=b91gtS0qliU)
 
-## Preview of trained agent - v0.6 ~ 100 000 steps
+## Preview of trained agent - v0.6 ~ 100Â 000 steps
 
 [Version 0.6](https://www.youtube.com/watch?v=6817Ynku2Xg)
 
@@ -38,5 +41,9 @@ rotation
 
 [Version 0.9](https://www.youtube.com/watch?v=U_c8JuvTiho)
 
+# Improvement idea
+ - Use better assets (real car, real world : roads...)
+ - Use computer vision + actual kind of sensors
+ ...
 
 
