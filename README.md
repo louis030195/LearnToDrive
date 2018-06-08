@@ -44,6 +44,6 @@ rotation
 # Improvement idea
  - Use better assets (real car, real world : roads...)
  - Use computer vision + actual kind of sensors
- ...
+ - Build small car with Raspberry PI and sensors that use the model
 
 
