@@ -6,6 +6,10 @@ The aim is to make the car learn to drive without hitting walls
 It's a sort of self driving car simulator, only using "sensors" for driving,
 real car use also computer vision with cameras (see improvement ideas)
 
+# Usage
+In order to make this project work, i recommend following tutorials to setup Unity ML-Agent
+https://github.com/Unity-Technologies/ml-agents
+
 ## Inputs variable
 x value of relative position between point to reach and agent<br/>
 z value of relative position between point to reach and agent<br/>
